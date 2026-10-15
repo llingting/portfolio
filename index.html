@@ -133,6 +133,21 @@
   }
   .note b { color: var(--ink-2); }
 
+  /* ---------- Agent showcase ---------- */
+  .agent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+  .agent-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 22px 20px; display: flex; flex-direction: column;
+  }
+  .agent-card .a-icon { font-size: 26px; margin-bottom: 10px; }
+  .agent-card h4 { font-size: 15.5px; margin-bottom: 8px; }
+  .agent-card .a-desc { font-size: 12.5px; color: var(--ink-2); line-height: 1.65; flex: 1; }
+  .agent-card .a-key {
+    margin-top: 12px; font-size: 12px; color: var(--accent);
+    background: var(--accent-soft); border-radius: 6px; padding: 6px 10px; line-height: 1.5;
+  }
+  .agent-card .a-key b { font-weight: 700; }
+
   /* ---------- Method ---------- */
   .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
   .m-step {
@@ -348,6 +363,33 @@
       <div class="note"><b>诚实标注：</b>本案例为<b>方案定稿 + 建设中</b>，可讲选型与 SLA 设计思路，不宣称已交付。</div>
     </div>
   </div>
+</section>
+
+<section>
+  <div class="sec-tag">AGENT SHOWCASE</div>
+  <h2 class="sec-title">三个 Dify Agent（演示重建版）</h2>
+  <p class="sec-desc">基于真实交付经验重构的可运行演示版，跑在个人 Dify 上，测试数据驱动。提示词里的硬约束全部来自真实项目沉淀——面试可逐条展开。</p>
+  <div class="agent-grid">
+    <div class="agent-card">
+      <div class="a-icon">🔍</div>
+      <h4>招聘流程分析 Agent</h4>
+      <div class="a-desc">输入招聘漏斗数据 → 各环节转化率对照基准 → 定位卡点并给可执行动作。数据不足先追问，不拿半截数据硬分析。</div>
+      <div class="a-key"><b>硬约束：</b>无数据支撑的结论必须标【推测】，不编造数字</div>
+    </div>
+    <div class="agent-card">
+      <div class="a-icon">📄</div>
+      <h4>简历分析 Agent</h4>
+      <div class="a-desc">简历 + JD → 匹配度 / 逐条对照 / 亮点 / 风险 / 建议，结构化输出。对应招聘系统的 AI 评估层。</div>
+      <div class="a-key"><b>硬约束：</b>没写的一律「未提及」不推测；反歧视条款（合规要求）；不轻易打 90+ 分</div>
+    </div>
+    <div class="agent-card">
+      <div class="a-icon">🖥️</div>
+      <h4>服务器运维自助 Agent</h4>
+      <div class="a-desc">分诊式排查：网络路径 → 服务进程 → 应用日志 → 配置，逐层隔离不跳步，面向 Docker / systemd 内网环境。</div>
+      <div class="a-key"><b>硬约束：</b>只给建议不假装执行；危险命令 ⚠️ 强制人工二次确认</div>
+    </div>
+  </div>
+  <div class="note"><b>诚实标注：</b>本区为<b>演示重建版</b>（可运行、可现场演示），非原生产环境部署——生产版本涉及客户数据不可外展；提示词约束与设计思路与真实交付同源。</div>
 </section>
 
 <section>
