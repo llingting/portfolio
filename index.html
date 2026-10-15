@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张永琪 · AI 应用交付作品集</title>
+<style>
+  :root {
+    --ink: #1a1d24;
+    --ink-2: #4a5060;
+    --ink-3: #8a90a0;
+    --paper: #f7f8fa;
+    --card: #ffffff;
+    --accent: #2456e6;
+    --accent-soft: #eaf0ff;
+    --green: #0e8a5f;
+    --green-soft: #e6f5ef;
+    --amber: #b07508;
+    --amber-soft: #fdf3e0;
+    --line: #e4e7ee;
+    --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Hero ---------- */
+  header {
+    background: linear-gradient(135deg, #10141d 0%, #1c2740 100%);
+    color: #fff;
+    padding: 72px 0 56px;
+  }
+  header .role-tag {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #9db4f0;
+    border: 1px solid #3d558f;
+    border-radius: 20px;
+    padding: 3px 14px;
+    margin-bottom: 18px;
+  }
+  header h1 { font-size: 34px; font-weight: 700; letter-spacing: 1px; }
+  header h1 span { color: #7ea2ff; }
+  header .sub { margin-top: 10px; font-size: 15px; color: #b8c2d8; }
+  .hero-stats {
+    display: flex; gap: 0; margin-top: 34px;
+    border-top: 1px solid rgba(255,255,255,.14);
+  }
+  .hero-stats .stat {
+    flex: 1; padding: 18px 0 0;
+    border-left: 1px solid rgba(255,255,255,.14);
+    padding-left: 20px;
+  }
+  .hero-stats .stat:first-child { border-left: none; padding-left: 0; }
+  .stat .num { font-size: 26px; font-weight: 700; color: #fff; }
+  .stat .num small { font-size: 14px; font-weight: 400; color: #9db4f0; margin-left: 2px; }
+  .stat .lbl { font-size: 12.5px; color: #8b97b0; margin-top: 2px; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 52px 0 8px; }
+  .sec-tag {
+    font-size: 12px; letter-spacing: 3px; color: var(--accent);
+    font-weight: 600; margin-bottom: 6px;
+  }
+  .sec-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .sec-desc { font-size: 14px; color: var(--ink-2); margin-bottom: 28px; max-width: 680px; }
+
+  /* ---------- Skill chips ---------- */
+  .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 20px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .skill-card h3 { font-size: 15px; margin-bottom: 12px; }
+  .skill-card h3 em { font-style: normal; font-size: 12px; color: var(--ink-3); font-weight: 400; margin-left: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 12.5px; padding: 4px 12px; border-radius: 6px;
+    background: var(--accent-soft); color: var(--accent); font-weight: 500;
+  }
+  .chip.dim { background: #f0f1f4; color: var(--ink-2); font-weight: 400; }
+
+  /* ---------- Case cards ---------- */
+  .case {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 34px 36px; margin-bottom: 26px;
+  }
+  .case-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 6px; }
+  .case-no {
+    font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent);
+    background: var(--accent-soft); border-radius: 8px; padding: 5px 10px; margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .case-head h3 { font-size: 20px; font-weight: 700; }
+  .case-head .status {
+    margin-left: auto; flex-shrink: 0; font-size: 12px; font-weight: 600;
+    border-radius: 6px; padding: 3px 10px; margin-top: 4px;
+  }
+  .status.live { background: var(--green-soft); color: var(--green); }
+  .status.building { background: var(--amber-soft); color: var(--amber); }
+  .case-head .poc { background: var(--accent-soft); color: var(--accent); }
+  .case .stack-line { font-size: 13px; color: var(--ink-3); margin-bottom: 20px; font-family: var(--mono); }
+  .case .stack-line b { color: var(--ink-2); font-weight: 600; }
+
+  .case-block { margin-bottom: 18px; }
+  .case-block .b-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .case-block p, .case-block li { font-size: 14px; color: var(--ink-2); }
+  .case-block ul { padding-left: 20px; }
+  .case-block li { margin-bottom: 6px; }
+  .case-block li b { color: var(--ink); }
+
+  .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 6px; }
+  .result-cell {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .result-cell .r-num { font-size: 20px; font-weight: 700; color: var(--ink); }
+  .result-cell .r-num small { font-size: 12px; font-weight: 400; color: var(--ink-3); }
+  .result-cell .r-lbl { font-size: 12px; color: var(--ink-3); margin-top: 2px; line-height: 1.5; }
+
+  .note {
+    margin-top: 14px; font-size: 12.5px; color: var(--ink-3);
+    border-left: 3px solid var(--line); padding-left: 12px;
+  }
+  .note b { color: var(--ink-2); }
+
+  /* ---------- Method ---------- */
+  .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .m-step {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 16px; position: relative;
+  }
+  .m-step .m-no { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+  .m-step h4 { font-size: 14.5px; margin: 4px 0 6px; }
+  .m-step p { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 48px; padding: 30px 0 44px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--ink-3);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer b { color: var(--ink); font-weight: 600; }
+
+  @media print {
+    header { background: #10141d !important; -webkit-print-color-adjust: exact; }
+    .case { break-inside: avoid; }
+  }
+  @media (max-width: 700px) {
+    .skill-grid, .result-grid, .method-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stats .stat { flex: 1 1 40%; margin-bottom: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="role-tag">AI APPLICATION DELIVERY · PORTFOLIO</div>
+    <h1>张永琪 <span>· AI 应用交付工程师</span></h1>
+    <p class="sub">从需求调研到上线培训的完整交付链路 ｜ 业务系统搭建 · Agent 编排 · 接口与自动化脚本自研</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">3<small>年</small>3<small>个月</small></div><div class="lbl">AI 应用交付经验（实施顾问 + 驻场交付）</div></div>
+      <div class="stat"><div class="num">5<small>个</small>/4<small>家</small></div><div class="lbl">交付项目 / 覆盖客户（化工·电力·农业·户外）</div></div>
+      <div class="stat"><div class="num">3<small>个</small></div><div class="lbl">本作品集核心案例（下方逐页可讲）</div></div>
+      <div class="stat"><div class="num">100<small>%</small></div><div class="lbl">案例可背书：未做过的不写，进行中的如实标注</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="sec-tag">CAPABILITY MAP</div>
+  <h2 class="sec-title">能力矩阵</h2>
+  <p class="sec-desc">按三态自评：<b>会</b>（语言能力）／<b>写过</b>（真实交付）／<b>精通</b>（纵深）。作品集只呈现"写过"以上的部分。</p>
+  <div class="skill-grid">
+    <div class="skill-card">
+      <h3>交付主链路 <em>（写过 → 熟练）</em></h3>
+      <div class="chips">
+        <span class="chip">需求调研与方案</span><span class="chip">业务系统配置</span><span class="chip">上线与培训</span><span class="chip">项目交接</span><span class="chip">客户驻场</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Agent 与自动化 <em>（写过）</em></h3>
+      <div class="chips">
+        <span class="chip">n8n 工作流</span><span class="chip">Dify Agent</span><span class="chip">钉钉 AI 助理平台</span><span class="chip">飞书多维表格自动化</span><span class="chip">RAG / 知识库</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>接口与脚本 <em>（写过）</em></h3>
+      <div class="chips">
+        <span class="chip">Python 脚本开发</span><span class="chip">REST API 对接</span><span class="chip">飞书开放 API</span><span class="chip">数据 ETL</span><span class="chip">LangChain（学习中，已完成 5 课教程）</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>数据与看板 <em>（写过）</em></h3>
+      <div class="chips">
+        <span class="chip">DataEase 看板</span><span class="chip">业务口径设计</span><span class="chip">指标体系梳理</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-tag">CASE STUDIES</div>
+  <h2 class="sec-title">核心案例</h2>
+  <p class="sec-desc">每个案例按「背景 → 方案 → 难点与解法 → 结果」组织，可按页讲述。</p>
+
+  <!-- ============ CASE 1 ============ -->
+  <div class="case">
+    <div class="case-head">
+      <div class="case-no">CASE 01</div>
+      <h3>招聘全流程管理系统（飞书多维表格 + AI Agent）</h3>
+      <span class="status live">已上线运行</span>
+    </div>
+    <div class="stack-line"><b>技术栈：</b>飞书多维表格 · 飞书开放 API · Python · 飞书自动化（HTTP 节点） · LangChain（重构中）</div>
+
+    <div class="case-block">
+      <div class="b-label">背 景</div>
+      <p>企业招聘流程分散在聊天记录和 Excel 里：候选人信息无沉淀、简历靠人工逐份录入、面试过程无结构化数据，无法复盘和沉淀人才库。</p>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">方 案</div>
+      <ul>
+        <li>以<b>在线多维表格为人才库载体</b>，设计 4 张业务表（候选人 / 面试 / 分析结果 / 池），通过关联字段打通招聘全流程；</li>
+        <li>自研 Python 脚本对接飞书开放 API，实现<b>简历附件 → AI 结构化抽取 → 5 个字段自动回填</b>（最高学历 / 工作年限 / 技能 / 当前公司 / 期望薪资），含类型校验与覆盖策略；</li>
+        <li>规划简历分析助手与招聘分析 Agent，分析结论写入专门表格形成<b>可复盘的人才数据资产</b>。</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">关键难点与解法</div>
+      <ul>
+        <li><b>平台能力边界探测：</b>通过搭建测试自动化节点 + 实测回写，验证了飞书自动化 HTTP 节点可将附件 fileToken 推送至外部服务并回写响应——推翻了"附件喂不进 AI"的预设，为外部 AI 处理链路打开通路；</li>
+        <li><b>AI 输出格式漂移：</b>旧方案用正则解析 AI 回复，格式一漂就错位。改用 Pydantic Schema 约束输出，校验失败变成可捕获、可重试的明确异常；</li>
+        <li><b>高频自动化的部署边界：</b>识别出与现有日报节点共用登录态的风险，确立高频任务独立部署、现有机器只跑每日任务的原则。</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">结 果</div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="r-num">4 张<small> 业务表</small></div><div class="r-lbl">全流程数据结构上线，候选人信息统一沉淀</div></div>
+        <div class="result-cell"><div class="r-num">5 个字段<small> 自动回填</small></div><div class="r-lbl">简历录入从人工逐项 → 附件上传自动完成</div></div>
+        <div class="result-cell"><div class="r-num">全链路 POC<small> 已验证</small></div><div class="r-lbl">附件 fileToken → 外部 AI → 结果回表，实测跑通</div></div>
+      </div>
+      <div class="note"><b>诚实标注：</b>自动化 HTTP 桥接为 POC 实测（fileToken 逐字符比对一致）；LangChain 重构版已完成教程与旗舰脚本，尚未替换生产脚本。</div>
+    </div>
+  </div>
+
+  <!-- ============ CASE 2 ============ -->
+  <div class="case">
+    <div class="case-head">
+      <div class="case-no">CASE 02</div>
+      <h3>私域运营日报 Agent（n8n 自动化流水线）</h3>
+      <span class="status live">生产运行中</span>
+    </div>
+    <div class="stack-line"><b>技术栈：</b>n8n · 企业微信 · Chrome 自动化 · 业务口径设计 · 独立部署策略</div>
+
+    <div class="case-block">
+      <div class="b-label">背 景</div>
+      <p>客服团队按线（客服一部 / 胸整 / 客服二部 / 皮肤助理）运营私域，入群、加微、成交数据散在企微后台，人工每天逐线拉数、手工算口径，耗时且口径漂移。</p>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">方 案</div>
+      <ul>
+        <li>在 n8n 搭建<b>四条日报自动化节点</b>，每日定时抓取企微数据，自动计算指标并推送日报；</li>
+        <li><b>业务口径设计</b>（本案例的核心价值，不只是"跑通流程"）：
+          <ul style="margin-top:4px">
+            <li>入群率：分子分母对齐——排除已进群客户再计算，避免重复计数虚高；</li>
+            <li>加微率：定位为<b>展示字段</b>，不进考核、不触发告警，防止数据被动作化误用；</li>
+            <li>当月成交：自 2023-11 起逐月归档、追溯不设起始边界，保证历史可比。</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">关键难点与解法</div>
+      <ul>
+        <li><b>登录态共用风险：</b>四条节点共用同一企微登录态与 Chrome profile，互相踢线。识别后确立分层策略——<b>高频自动化必须独立机器部署，现有机器只承载每日一次任务</b>；</li>
+        <li><b>口径即产品：</b>发现"分母怎么算"直接决定团队是否达标，把口径定义从代码里抽出来做成可讨论、可修改的显式规则，与业务方逐条确认。</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">结 果</div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="r-num">4 条线<small> 全自动日报</small></div><div class="r-lbl">每日定时推送，替代人工逐线拉数</div></div>
+        <div class="result-cell"><div class="r-num">3 项口径<small> 显式化</small></div><div class="r-lbl">入群率 / 加微率 / 成交追溯规则与业务方对齐</div></div>
+        <div class="result-cell"><div class="r-num">风险前置<small> 识别</small></div><div class="r-lbl">登录态共用问题在扩频前被拦截并制定边界</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CASE 3 ============ -->
+  <div class="case">
+    <div class="case-head">
+      <div class="case-no">CASE 03</div>
+      <h3>大促直播数据看板（从 0 到 1 复刻）</h3>
+      <span class="status building">方案定稿 · 建设中</span>
+    </div>
+    <div class="stack-line"><b>技术栈：</b>云晰后台数据源 · ETL · 独立服务部署 · SLA 设计</div>
+
+    <div class="case-block">
+      <div class="b-label">背 景</div>
+      <p>大促直播期间运营需要准实时的邀约 / 跟单 / 订单数据，现有看板无法复用，需要从 0 到 1 重建数据通路。</p>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">方案（已定稿）</div>
+      <ul>
+        <li>数据源为云晰后台<b>三张业务表（邀约 / 跟单 / 订单）</b>，经 ETL 清洗汇聚后供看板消费；</li>
+        <li><b>SLA 明确写进方案：</b>推送频率每 30 分钟覆盖最新数据，单次导出 ≤ 5 分钟；</li>
+        <li>架构选型完成：独立服务部署（与现有日报机器隔离）+ 数据库 + 看板层，含幂等、鉴权、失败重试与可观测性四项技术设计。</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">关键难点与解法</div>
+      <ul>
+        <li><b>部署边界：</b>复用现有日报机器会撞共享登录态风险（CASE 02 的教训直接复用），方案从第一天就按独立机器设计；</li>
+        <li><b>先方案后动手：</b>完成完整方案文档 + 批判性自审（主动暴露两处此前误判）后才进入实施，避免边做边返工。</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <div class="b-label">当前状态（如实标注）</div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="r-num">3 张表<small> 数据通路设计完成</small></div><div class="r-lbl">邀约 / 跟单 / 订单</div></div>
+        <div class="result-cell"><div class="r-num">30 min<small> 推送 SLA</small></div><div class="r-lbl">导出 ≤ 5 min，写进方案</div></div>
+        <div class="result-cell"><div class="r-num">7 层架构<small> 选型完成</small></div><div class="r-lbl">含演进路径与 MVP 边界</div></div>
+      </div>
+      <div class="note"><b>诚实标注：</b>本案例为<b>方案定稿 + 建设中</b>，可讲选型与 SLA 设计思路，不宣称已交付。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-tag">METHODOLOGY</div>
+  <h2 class="sec-title">交付方法论</h2>
+  <p class="sec-desc">上面三个案例背后是同一套工作方式——它比单个项目更能预测我下一次交付的质量。</p>
+  <div class="method-grid">
+    <div class="m-step"><div class="m-no">STEP 1</div><h4>先方案后动手</h4><p>完整方案文档 + 批判性自审，主动暴露方案漏洞后再实施。</p></div>
+    <div class="m-step"><div class="m-no">STEP 2</div><h4>边界先实测</h4><p>平台能力不靠猜：用最小 POC 验证关键假设（如 HTTP 桥接实测），再定架构。</p></div>
+    <div class="m-step"><div class="m-no">STEP 3</div><h4>口径即产品</h4><p>指标分母怎么算直接决定业务成败，口径显式化、与业务方逐条确认。</p></div>
+    <div class="m-step"><div class="m-no">STEP 4</div><h4>诚实交付</h4><p>三态自评（会/写过/精通），没做过的不写；进行中与已交付严格区分。</p></div>
+  </div>
+</section>
+
+<footer>
+  <div><b>张永琪</b> ｜ AI 应用交付工程师 ｜ 上海</div>
+  <div>本作品集所有案例均可现场展开细讲 · 数据与状态如实标注</div>
+</footer>
+
+</div>
+</body>
+</html>
