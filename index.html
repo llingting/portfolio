@@ -367,7 +367,7 @@
 
 <section>
   <div class="sec-tag">AGENT SHOWCASE</div>
-  <h2 class="sec-title">四个 Dify Agent（演示重建版）</h2>
+  <h2 class="sec-title">五个 Dify Agent（演示重建版）</h2>
   <p class="sec-desc">基于真实交付经验重构的可运行演示版，跑在个人 Dify 上，测试数据驱动。提示词里的硬约束全部来自真实项目沉淀——面试可逐条展开。</p>
   <div class="agent-grid">
     <div class="agent-card">
@@ -394,8 +394,47 @@
       <div class="a-desc">候选人时段 + 面试官忙闲 → 候选时段排序（带推荐理由与风险）+ 邀约话术草稿 + 面试官日程备忘。忙闲双路径：日历自动拉取 / 手动粘贴降级。</div>
       <div class="a-key"><b>硬约束：</b>只提议、只出草稿，输出出现"已安排"即为失职；严禁编造忙闲</div>
     </div>
+    <div class="agent-card">
+      <div class="a-icon">📊</div>
+      <h4>私域口径问答 Agent</h4>
+      <div class="a-desc">业务日报口径的可问答知识层：入群率分母排除规则、加微率仅展示定位、成交追溯边界——算法、理由、不适用场景三段直给。业务方不用再来回问人。</div>
+      <div class="a-key"><b>硬约束：</b>只依据已确认口径，没写的答"未确认"；口径变更必须人工拍板，AI 当场不改</div>
+    </div>
   </div>
-  <div class="note"><b>诚实标注：</b>本区为<b>演示重建版</b>（可运行、可现场演示），非原生产环境部署——生产版本涉及客户数据不可外展；提示词约束与设计思路与真实交付同源。简历分析与面试协调已接入<b>飞书群机器人</b>（长连接模式，免公网 IP）：简历附件 PDF/docx/图片/扫描件全形态自动解析（含 OCR 粘连污染的"二遍局部重识别"分层修复）→ 分析结果自动落库；面试协调只提议不发送。代码完成并实测，部署配置中。</div>
+  <div class="note"><b>诚实标注：</b>本区为<b>演示重建版</b>（可运行、可现场演示），非原生产环境部署——生产版本涉及客户数据不可外展；提示词约束与设计思路与真实交付同源。简历分析、面试协调、口径问答已接入<b>飞书群机器人</b>（长连接模式，免公网 IP）：简历附件 PDF/docx/图片/扫描件全形态自动解析（含 OCR 粘连污染的分层修复，见下）→ 分析结果自动落库；面试协调只提议不发送。代码完成并实测，部署配置中。</div>
+</section>
+
+<section>
+  <div class="sec-tag">DEBUG STORY</div>
+  <h2 class="sec-title">案例深挖 · OCR 粘连污染的分层修复</h2>
+  <p class="sec-desc">一个能体现排障功力的完整故事：真实数据发现问题 → 诊断到具体层 → 排除法验证 → 分层根治。每一步都有实测依据。</p>
+  <div class="note" style="margin-bottom:14px"><b>问题：</b>真实简历页眉两栏并排「26岁 ｜ 3年3个月工作经验」，OCR 识别成<b>「26岁13年3个月工作经验」</b>——工作年限直接高估 4 倍，喂给分析 Agent 会严重失真。标准测试图全过，只有真实脏数据能暴露。</div>
+  <div class="agent-grid">
+    <div class="agent-card">
+      <div class="a-icon">🔬</div>
+      <h4>① 诊断到层</h4>
+      <div class="a-desc">打印检测框坐标：粘连文本是<b>一个检测框</b>（x 499-673）——文本在识别前就粘死，问题在检测层，不在识别层或拼接层。</div>
+      <div class="a-key"><b>关键：</b>先定位层，再动手修</div>
+    </div>
+    <div class="agent-card">
+      <div class="a-icon">🧪</div>
+      <h4>② 排除法验证</h4>
+      <div class="a-desc">调检测框扩张系数（1.6→1.0）、放大输入图（1.5x/2x）——<b>全部无效</b>，确认 RapidOCR 1.2.3 检测层调参救不回。顺带发现"1"是竖线分隔符误认，直接删会误伤真实「31年经验」。</div>
+      <div class="a-key"><b>关键：</b>排除的路径也记下来，不重复走</div>
+    </div>
+    <div class="agent-card">
+      <div class="a-icon">🛠️</div>
+      <h4>③ 二遍局部重识别</h4>
+      <div class="a-desc">只对命中粘连特征的框，裁剪出来单独再识别——框变小后局部有效分辨率提高，检测框能拆开。拆出 ≥2 框才采用，拆不开保留原文。</div>
+      <div class="a-key"><b>关键：</b>不全图重跑，性能无感；宁可有瑕疵不造假</div>
+    </div>
+    <div class="agent-card">
+      <div class="a-icon">🛡️</div>
+      <h4>④ 三层防线兜底</h4>
+      <div class="a-desc">重识别（治本）→ 粘连断行规则（兜底，只断行不删字，信息零丢失）→ LLM 跨度矛盾检测（语义层：年限 vs 经历时间矛盾就标注）。真实简历复测：污染消除。</div>
+      <div class="a-key"><b>关键：</b>每层兜不同的事故，关键数字不会静默错</div>
+    </div>
+  </div>
 </section>
 
 <section>
