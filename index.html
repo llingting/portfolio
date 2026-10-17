@@ -367,7 +367,7 @@
 
 <section>
   <div class="sec-tag">AGENT SHOWCASE</div>
-  <h2 class="sec-title">三个 Dify Agent（演示重建版）</h2>
+  <h2 class="sec-title">四个 Dify Agent（演示重建版）</h2>
   <p class="sec-desc">基于真实交付经验重构的可运行演示版，跑在个人 Dify 上，测试数据驱动。提示词里的硬约束全部来自真实项目沉淀——面试可逐条展开。</p>
   <div class="agent-grid">
     <div class="agent-card">
@@ -388,8 +388,14 @@
       <div class="a-desc">分诊式排查：网络路径 → 服务进程 → 应用日志 → 配置，逐层隔离不跳步，面向 Docker / systemd 内网环境。</div>
       <div class="a-key"><b>硬约束：</b>只给建议不假装执行；危险命令 ⚠️ 强制人工二次确认</div>
     </div>
+    <div class="agent-card">
+      <div class="a-icon">🗓️</div>
+      <h4>面试协调 Agent</h4>
+      <div class="a-desc">候选人时段 + 面试官忙闲 → 候选时段排序（带推荐理由与风险）+ 邀约话术草稿 + 面试官日程备忘。忙闲双路径：日历自动拉取 / 手动粘贴降级。</div>
+      <div class="a-key"><b>硬约束：</b>只提议、只出草稿，输出出现"已安排"即为失职；严禁编造忙闲</div>
+    </div>
   </div>
-  <div class="note"><b>诚实标注：</b>本区为<b>演示重建版</b>（可运行、可现场演示），非原生产环境部署——生产版本涉及客户数据不可外展；提示词约束与设计思路与真实交付同源。</div>
+  <div class="note"><b>诚实标注：</b>本区为<b>演示重建版</b>（可运行、可现场演示），非原生产环境部署——生产版本涉及客户数据不可外展；提示词约束与设计思路与真实交付同源。简历分析与面试协调已接入<b>飞书群机器人</b>（长连接模式，免公网 IP）：简历附件 PDF/docx/图片/扫描件全形态自动解析（含 OCR 粘连污染的"二遍局部重识别"分层修复）→ 分析结果自动落库；面试协调只提议不发送。代码完成并实测，部署配置中。</div>
 </section>
 
 <section>
